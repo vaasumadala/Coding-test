@@ -5,7 +5,6 @@ var file = 'input.txt';
 fs.readFile(file, 'utf8', function (err, data) {
 
   if (err) throw err;
-
   var wordsArray = splitByWords(data);
   var wordsMap = createWordMap(wordsArray);
   var finalWordsArray = sortByCount(wordsMap);
@@ -15,19 +14,15 @@ fs.readFile(file, 'utf8', function (err, data) {
     finalWordsArray[0].total + ' times');
 });
 
-
 function splitByWords (text) {
   // split string by spaces (including spaces, tabs, and newlines)
   var wordsArray = text.split(/\s+/);
   return wordsArray;
 }
 
-
 function createWordMap (wordsArray) {
-
   // create map for word counts
   var wordsMap = {};
- 
   wordsArray.forEach(function (key) {
     if (wordsMap.hasOwnProperty(key)) {
       wordsMap[key]++;
@@ -35,11 +30,8 @@ function createWordMap (wordsArray) {
       wordsMap[key] = 1;
     }
   });
-
   return wordsMap;
-
 }
-
 
 function sortByCount (wordsMap) {
 
@@ -51,11 +43,8 @@ function sortByCount (wordsMap) {
       total: wordsMap[key]
     };
   });
-
   finalWordsArray.sort(function(a, b) {
     return b.total - a.total;
   });
-
   return finalWordsArray;
-
 }
